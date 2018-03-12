@@ -1,0 +1,7 @@
+This scheduler object offers the standard "timer" tasks as other scheduler objects do, but it also offers a scheduler very similar in functionality to Cron.
+
+Installation:
+
+Installation is mostly straightforward. Just install scheduler.moo. It will port the object and corify it.
+THe only thing you may want to change is how task errors are dealt with.
+Lines have been commented out in check_cron_tasks and check_timer_tasks, after the "except" line. You can uncomment them, or do something else.
