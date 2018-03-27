@@ -1,0 +1,32 @@
+--- MOO/server.c	2011-08-29 02:10:18.000000000 -0500
++++ MOO-get_pid/server.c	2011-08-29 02:08:55.000000000 -0500
+@@ -1280,6 +1280,21 @@
+ /**** built in functions ****/
+ 
+ static package
++bf_get_pid(Var arglist, Byte next, void *vdata, Objid progr)
++{
++    Var r;
++
++    free_var(arglist);
++
++    if(!is_wizard(progr))
++        return make_error_pack(E_PERM);
++
++    r.type = TYPE_INT;
++    r.v.num = getpid();
++    return make_var_pack(r);
++}
++
++static package
+ bf_server_version(Var arglist, Byte next, void *vdata, Objid progr)
+ {
+     Var r;
+@@ -1763,6 +1778,7 @@
+ void
+ register_server(void)
+ {
++        register_function("get_pid", 0, 0, bf_get_pid);
+     register_function("server_version", 0, 0, bf_server_version);
+     register_function("renumber", 1, 1, bf_renumber, TYPE_OBJ);
+     register_function("reset_max_object", 0, 0, bf_reset_max_object);
