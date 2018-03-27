@@ -1,0 +1,1 @@
+These patches should work with the latest (1.8.3) version of LambdaMOO. Just type "patch -i <patchfile>" from the directory that holds your server source, then recompile.
