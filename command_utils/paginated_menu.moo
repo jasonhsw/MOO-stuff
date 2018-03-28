@@ -31,7 +31,7 @@ else
 endif
 while (1)
   ret = #-1;
-  opts = (headers ? {headers} | {});
+  opts = headers ? {headers} | {};
   if (max_call)
     max_items = max_call[1]:(max_call[2])();
     typeof(max_items) != INT || max_items < 1 && raise(E_INVARG);
@@ -49,7 +49,7 @@ while (1)
     item = item_call[1]:(item_call[2])(o);
     typeof(item) != STR && typeof(item) != LIST && raise(E_INVARG);
     opts = {@opts, item};
-    o = o + ((max_item < min_item) ? -1 | 1);
+    o = o + (max_item < min_item ? -1 | 1);
     $command_utils:suspend_if_needed(0);
   endwhile
   opts = {@opts, "_Options:", @special_opts};
@@ -73,13 +73,17 @@ while (1)
       endif
     endif
     ret = $command_utils:menu(opts, valid(player));
-    if (typeof(ret) == INT && ret >= 1 && ret <= pagelen)
-      if (!reverse)
-        index = $page_utils:get_item(ret, page, pagelen);
+    if (typeof(ret) == INT)
+      if (ret <= pagelen)
+        if (!reverse)
+          index = $page_utils:get_item(ret, page, pagelen);
+        else
+          index = $page_utils:get_item_reversed(ret, page, pagelen, max_items);
+        endif
+        return index;
       else
-        index = $page_utils:get_item_reversed(ret, page, pagelen, max_items);
+        return {page, ret};
       endif
-      return index;
     elseif (ret == "p")
       page = page - 1;
     elseif (ret == "n")
@@ -105,5 +109,6 @@ while (1)
     endif
   endwhile
 endwhile
-"Last modified Wed Mar 28 12:11:04 2018 CDT by Jason Perino (#91@ThetaCore).";
+"Last modified Wed Mar 28 13:38:58 2018 CDT by Jason Perino (#91@ThetaCore).";
 .
+
