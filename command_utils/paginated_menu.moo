@@ -45,7 +45,7 @@ while (1)
     max_item = $page_utils:max_item_reversed(page, pagelen, max_items);
   endif
   o = min_item;
-  while (min_item < max_item && o <= max_item || o >= max_item)
+  while (o >= min_item && o <= max_item)
     item = item_call[1]:(item_call[2])(o);
     typeof(item) != STR && typeof(item) != LIST && raise(E_INVARG);
     opts = {@opts, item};
@@ -109,6 +109,6 @@ while (1)
     endif
   endwhile
 endwhile
-"Last modified Wed Mar 28 13:38:58 2018 CDT by Jason Perino (#91@ThetaCore).";
+"Last modified Wed Mar 28 15:57:27 2018 CDT by Jason Perino (#91@ThetaCore).";
 .
 
