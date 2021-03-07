@@ -1,6 +1,0 @@
-There have been some updates to the standard menu verb.
-The sublist method for specifying string options has been removed, and is now used for displaying the menu in a table format. See the verb documentation for more info.
-A bug was squashed.
-Of course, table menus rely on the table_left verb in string_utils.moo.
-There is a new paginated_menu verb, which depends on pagination utilities (page_utils.moo.)
-These should be easy to install, unless you already have verbs with conflicting verbnames. Just load them into your client.
