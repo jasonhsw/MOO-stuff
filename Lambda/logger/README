@@ -1,0 +1,8 @@
+The logger object stores messages for multiple logs. With the @logs command, you can change the level of messages from a log that you're listening to, or ignore logs completely. You can also query one or more logs by separating the log names with commas (,).
+
+Installation:
+
+Install logger.moo. This will create the logger object, corify it as $logger, and install the needed verbs and properties.
+Put a property called log_levels on either $player or $player_class:
+@prop $player.log_levels {} ""
+The admin_verbs.moo file will install the @logs verb on $builder, but you can change this if you want players to be able to query the logs.
